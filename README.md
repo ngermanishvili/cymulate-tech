@@ -32,30 +32,23 @@ packages/
 ### Management Server
 - **User Management**
   - Secure authentication system
-  - Role-based access control
-  - User profile management
+
 
 - **Campaign Configuration**
   - Create and manage phishing simulation scenarios
   - Define targeted email templates
-  - Schedule and track campaign workflows
 
 ### Simulation Server
 - **Email Generation**
   - Dynamic phishing email template creation
-  - Contextual scenario modeling
-  - Realistic social engineering techniques
 
 - **Phishing Scenario Execution**
   - Automated email dispatch
-  - Incident response simulation
-
+  
 
 ### Frontend Application
 - **Dashboard**
   - Centralized overview of simulation results
-  - Interactive performance metrics
-  - Comparative organizational risk analysis
 
 - **Campaign Management**
   - Intuitive campaign creation wizard
@@ -65,7 +58,6 @@ packages/
 - User authentication
 - Phishing campaign management
 - Simulation email tracking
-- Security awareness tracking
 
 ## Security
 - JWT authentication
