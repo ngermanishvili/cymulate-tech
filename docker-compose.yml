@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./packages/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:3000/api
+    networks:
+      - phishing-network
+    depends_on:
+      - management-server
+
+  management-server:
+    build:
+      context: ./packages/management-server
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - MONGODB_URI=${MONGODB_URI}
+      - JWT_SECRET=${JWT_SECRET}
+      - SIMULATION_API_URL=http://simulation-server:3001
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
+      - FRONTEND_URL=http://frontend:5173
+    networks:
+      - phishing-network
+    depends_on:
+      - simulation-server
+
+  simulation-server:
+    build:
+      context: ./packages/simulation-server
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
+    networks:
+      - phishing-network
+
+networks:
+  phishing-network:
+    driver: bridge
